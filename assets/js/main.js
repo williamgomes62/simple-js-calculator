@@ -50,26 +50,17 @@ function Calculator() {
     document.addEventListener('click', (event) => {
       // this -> document
       const el = event.target;
-
-      if (el.classList.contains('btn-num')) {
-        this.btnToDisplay(el.innerText);
-      }
-
-      if (el.classList.contains('btn-clear')) {
-        this.clearDisplay();
-      }
-
-      if (el.classList.contains('btn-del')) {
-        this.deleteOne();
-      }
-
-      if (el.classList.contains('btn-eq')) {
-        this.processResult();
-      }
+      if (el.classList.contains('btn-num')) this.btnToDisplay(el);
+      if (el.classList.contains('btn-clear')) this.clearDisplay();
+      if (el.classList.contains('btn-del')) this.deleteOne();
+      if (el.classList.contains('btn-eq')) this.processResult();
     });
   };
 
-  this.btnToDisplay = (value) => this.display.value += value;
+  this.btnToDisplay = (el) => {
+    this.display.value += el.innerText;
+    this.display.focus();
+  };
 }
 
 const calculator = new Calculator();
